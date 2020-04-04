@@ -6,7 +6,7 @@ public class Armor {
     private int power;
 
     /**
-     * Set the armor name and armor power
+     * Set the armor name and the armor power
      * @param name
      * @param power
      */
