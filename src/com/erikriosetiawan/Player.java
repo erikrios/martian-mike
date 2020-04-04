@@ -1,5 +1,8 @@
 package com.erikriosetiawan;
 
+/**
+ * A class to create the instance of player
+ */
 public class Player {
 
     private String name;
