@@ -1,5 +1,8 @@
 package com.erikriosetiawan;
 
+/**
+ * The armor of the player
+ */
 public class Armor {
 
     private String name;

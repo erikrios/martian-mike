@@ -1,5 +1,8 @@
 package com.erikriosetiawan;
 
+/**
+ * The weapon of the player
+ */
 public class Weapon {
 
     private String name;
