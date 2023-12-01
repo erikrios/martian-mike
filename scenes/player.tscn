@@ -211,3 +211,5 @@ frame_progress = 0.440442
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_xpudo")
+
+[node name="Camera2D" type="Camera2D" parent="."]
