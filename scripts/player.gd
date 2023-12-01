@@ -9,24 +9,34 @@ class_name Player
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 func _physics_process(delta: float) -> void:
+	apply_gravity(delta)
+	handle_jump()
+	var direction := get_direction()
+	handle_character_direction(direction)	
+	handle_movement(direction)
+	move_and_slide() 
+	update_animations(direction)
+
+func apply_gravity(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		if velocity.y > 500:
 			velocity.y = 500
-		
+
+func handle_jump() -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = -jump_force
-	
-	var direction := Input.get_axis("move_left", "move_right")
+
+func get_direction() -> int:
+	return Input.get_axis("move_left", "move_right")
+
+func handle_character_direction(direction: int) -> void:
 	if direction != 0:
 		animated_sprite_2d.flip_h = direction == -1
-		
-	velocity.x = direction * speed
-	
-	move_and_slide() 
 
-	update_animations(direction)
-	
+func handle_movement(direction: int) -> void:
+	velocity.x = direction * speed
+
 func update_animations(direction: int) -> void:
 	if is_on_floor():
 		if direction == 0:
