@@ -25,7 +25,7 @@ func apply_gravity(delta: float) -> void:
 
 func handle_jump() -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = -jump_force
+		jump(jump_force)
 
 func get_direction() -> int:
 	return Input.get_axis("move_left", "move_right")
@@ -48,3 +48,7 @@ func update_animations(direction: int) -> void:
 			animated_sprite_2d.play("jump")
 		else:
 			animated_sprite_2d.play("fall")
+
+func jump(force: int) -> void:
+	velocity.y = -force
+	
