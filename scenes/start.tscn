@@ -139,7 +139,7 @@ script = ExtResource("1_lgpk8")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_elyks")
 autoplay = "default"
-frame_progress = 0.924792
+frame_progress = 0.448391
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(11, 28)
