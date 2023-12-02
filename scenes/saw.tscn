@@ -11,7 +11,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Area2D/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -22,13 +22,13 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_yaryw"]
-resource_name = "rotate"
+resource_name = "spin"
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Area2D/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -41,25 +41,25 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_363ws"]
 _data = {
 "RESET": SubResource("Animation_sbsh1"),
-"rotate": SubResource("Animation_yaryw")
+"spin": SubResource("Animation_yaryw")
 }
 
 [node name="Saw" type="Node2D"]
 script = ExtResource("1_ytkbe")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_oiwn4")
-hframes = 8
-
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+texture = ExtResource("1_oiwn4")
+hframes = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_yx7la")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "rotate"
+autoplay = "spin"
 libraries = {
 "": SubResource("AnimationLibrary_363ws")
 }
