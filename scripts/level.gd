@@ -2,7 +2,10 @@ extends Node2D
 
 class_name Level
 
+@export var next_level: PackedScene = null
+
 @onready var start: Start = $Start
+@onready var exit: Exit = $Exit
 
 var player: Player = null
 
@@ -14,6 +17,8 @@ func _ready() -> void:
 	var traps := get_tree().get_nodes_in_group("traps")
 	for trap in traps:
 		trap.touched_player.connect(_on_trap_touched_player)
+		
+	exit.body_entered.connect(_on_exit_body_entered)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("quit"):
@@ -30,3 +35,10 @@ func _on_trap_touched_player() -> void:
 func reset_player() -> void:
 	player.velocity = Vector2.ZERO
 	player.global_position = start.get_spawn_pos()
+
+func _on_exit_body_entered(body: Node2D) -> void:
+	if body is Player:
+		exit.animate()
+		if next_level != null:
+			await get_tree().create_timer(1.5).timeout
+			get_tree().change_scene_to_packed(next_level)

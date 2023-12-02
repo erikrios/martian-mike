@@ -12,7 +12,7 @@ func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
 	handle_jump()
 	var direction := get_direction()
-	handle_character_direction(direction)	
+	handle_character_direction(direction)
 	handle_movement(direction)
 	move_and_slide() 
 	update_animations(direction)
