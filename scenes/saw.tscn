@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://blhylwyw3buvm"]
+
+[ext_resource type="Texture2D" uid="uid://bn7d2qwmquulw" path="res://assets/textures/other/Saw.png" id="1_oiwn4"]
+[ext_resource type="Script" path="res://scripts/trap.gd" id="1_ytkbe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yx7la"]
+radius = 19.0
+
+[sub_resource type="Animation" id="Animation_sbsh1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_yaryw"]
+resource_name = "rotate"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_363ws"]
+_data = {
+"RESET": SubResource("Animation_sbsh1"),
+"rotate": SubResource("Animation_yaryw")
+}
+
+[node name="Saw" type="Node2D"]
+script = ExtResource("1_ytkbe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_oiwn4")
+hframes = 8
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_yx7la")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "rotate"
+libraries = {
+"": SubResource("AnimationLibrary_363ws")
+}
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
