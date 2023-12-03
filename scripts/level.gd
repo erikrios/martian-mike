@@ -7,6 +7,7 @@ class_name Level
 @onready var start: Start = $Start
 @onready var exit: Exit = $Exit
 @onready var deathzone: Area2D = $Deathzone
+@onready var hud: HUD = $UILayer/HUD
 
 var player: Player = null
 
@@ -35,6 +36,7 @@ func _ready() -> void:
 	timer_node.start()
 	
 	time_left = level_time
+	hud.set_time_label(time_left)
 	
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("quit"):
@@ -65,6 +67,8 @@ func _on_exit_body_entered(body: Node2D) -> void:
 func _on_level_timer_timeout():
 	if not win:
 		time_left -= 1
+		hud.set_time_label(time_left)
 		if time_left < 0:
 			reset_player()
 			time_left = level_time
+			hud.set_time_label(time_left)
