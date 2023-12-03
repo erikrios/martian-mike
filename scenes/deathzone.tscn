@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://wjn2un67lpcf"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_d187c"]
+a = Vector2(-4, 393)
+b = Vector2(-4.00009, -2017)
+
+[node name="Deathzone" type="Area2D"]
+position = Vector2(0, 339)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-396, 0)
+rotation = 1.5708
+shape = SubResource("SegmentShape2D_d187c")

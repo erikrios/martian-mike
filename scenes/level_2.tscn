@@ -1,7 +1,61 @@
-[gd_scene load_steps=2 format=3 uid="uid://dohqv40j0dhhm"]
+[gd_scene load_steps=13 format=3 uid="uid://dohqv40j0dhhm"]
 
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_5xbtd"]
 [ext_resource type="PackedScene" uid="uid://c8xp0vjjam8ox" path="res://scenes/player.tscn" id="1_o1sgn"]
+[ext_resource type="PackedScene" uid="uid://c00mv84ai0hg0" path="res://scenes/bg.tscn" id="2_ah8h0"]
+[ext_resource type="PackedScene" uid="uid://bfw84hg7r3j72" path="res://scenes/level_3.tscn" id="2_u2s3l"]
+[ext_resource type="Texture2D" uid="uid://bkd4hd1ahwar2" path="res://assets/textures/bg/Green.png" id="3_rx0mj"]
+[ext_resource type="PackedScene" uid="uid://bqudhnatby602" path="res://scenes/tile_map.tscn" id="4_2bvyh"]
+[ext_resource type="PackedScene" uid="uid://dcsgj0kxje6kp" path="res://scenes/start.tscn" id="6_ro8d0"]
+[ext_resource type="PackedScene" uid="uid://chhf6u5y7j5ve" path="res://scenes/exit.tscn" id="7_wvg1j"]
+[ext_resource type="PackedScene" uid="uid://wjn2un67lpcf" path="res://scenes/deathzone.tscn" id="7_yltwv"]
+[ext_resource type="PackedScene" uid="uid://blhylwyw3buvm" path="res://scenes/saw.tscn" id="10_jt22x"]
+[ext_resource type="PackedScene" uid="uid://bogyqh1cd0tst" path="res://scenes/spike_ball.tscn" id="11_hy5m1"]
+[ext_resource type="PackedScene" uid="uid://bftl8tgbp44wv" path="res://scenes/jump_pad.tscn" id="12_eogoi"]
 
 [node name="Level2" type="Node2D"]
+script = ExtResource("1_5xbtd")
+next_level = ExtResource("2_u2s3l")
+
+[node name="BG" parent="." instance=ExtResource("2_ah8h0")]
+bg_texture = ExtResource("3_rx0mj")
+
+[node name="TileMap" parent="." instance=ExtResource("4_2bvyh")]
+layer_0/tile_data = PackedInt32Array(1048576, 393216, 2, 1048577, 458752, 2, 1048578, 458752, 2, 1048579, 458752, 2, 1048580, 458752, 2, 1048581, 458752, 2, 1048582, 458752, 2, 1048583, 458752, 2, 1048584, 458752, 2, 1048585, 458752, 2, 1048586, 458752, 2, 1048587, 458752, 2, 1048588, 458752, 2, 1048589, 458752, 2, 1048590, 458752, 2, 1048591, 458752, 2, 983040, 393216, 1, 983041, 458752, 1, 983042, 458752, 1, 983043, 458752, 1, 983044, 458752, 1, 983045, 458752, 1, 983046, 458752, 1, 983047, 458752, 1, 983048, 458752, 1, 983049, 458752, 1, 983050, 458752, 1, 983051, 458752, 1, 983052, 458752, 1, 983053, 458752, 1, 983054, 458752, 1, 983055, 458752, 1, 917504, 393216, 0, 917505, 458752, 0, 917506, 458752, 0, 917507, 458752, 0, 917508, 458752, 0, 917509, 458752, 0, 917510, 458752, 0, 917511, 458752, 0, 917512, 458752, 0, 917513, 458752, 0, 917514, 458752, 0, 917515, 458752, 0, 917516, 458752, 0, 917517, 458752, 0, 917518, 458752, 0, 917519, 458752, 0, 917520, 458752, 0, 917521, 458752, 0, 917522, 458752, 0, 917523, 458752, 0, 917524, 458752, 0, 917525, 458752, 0, 917526, 458752, 0, 917527, 458752, 0, 917528, 458752, 0, 917529, 458752, 0, 917530, 524288, 0, 983056, 458752, 1, 983058, 458752, 1, 983057, 458752, 1, 983060, 458752, 1, 983059, 458752, 1, 983062, 458752, 1, 983061, 458752, 1, 983063, 458752, 1, 983064, 458752, 1, 983065, 458752, 1, 983066, 524288, 1, 1048592, 458752, 2, 1048593, 458752, 2, 1048594, 458752, 2, 1048595, 458752, 2, 1048596, 458752, 2, 1048597, 458752, 2, 1048598, 458752, 2, 1048599, 458752, 2, 1048600, 458752, 2, 1048601, 458752, 2, 1048602, 524288, 2)
+
+[node name="Start" parent="." instance=ExtResource("6_ro8d0")]
+position = Vector2(59, 192)
+
+[node name="Exit" parent="." instance=ExtResource("7_wvg1j")]
+position = Vector2(408, 192)
+
+[node name="Deathzone" parent="." instance=ExtResource("7_yltwv")]
+position = Vector2(645, 304)
 
 [node name="Player" parent="." instance=ExtResource("1_o1sgn")]
+
+[node name="Traps" type="Node2D" parent="."]
+
+[node name="Saw" parent="Traps" instance=ExtResource("10_jt22x")]
+position = Vector2(11, 205)
+
+[node name="Saw2" parent="Traps" instance=ExtResource("10_jt22x")]
+position = Vector2(11, 163)
+
+[node name="Saw3" parent="Traps" instance=ExtResource("10_jt22x")]
+position = Vector2(348, 202)
+
+[node name="Saw4" parent="Traps" instance=ExtResource("10_jt22x")]
+position = Vector2(11, 120)
+
+[node name="SpikeBall" parent="Traps" instance=ExtResource("11_hy5m1")]
+position = Vector2(185, 199)
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="JumpPad" parent="Objects" instance=ExtResource("12_eogoi")]
+position = Vector2(152, 210)
+
+[node name="JumpPad2" parent="Objects" instance=ExtResource("12_eogoi")]
+position = Vector2(305, 210)
+jump_force = 350

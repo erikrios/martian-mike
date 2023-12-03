@@ -6,6 +6,7 @@ class_name Level
 
 @onready var start: Start = $Start
 @onready var exit: Exit = $Exit
+@onready var deathzone: Area2D = $Deathzone
 
 var player: Player = null
 
@@ -19,7 +20,8 @@ func _ready() -> void:
 		trap.touched_player.connect(_on_trap_touched_player)
 		
 	exit.body_entered.connect(_on_exit_body_entered)
-
+	deathzone.body_entered.connect(_on_deathzone_body_entered)
+	
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
