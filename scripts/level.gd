@@ -4,10 +4,12 @@ class_name Level
 
 @export var next_level: PackedScene = null
 @export var level_time := 5
+@export var is_final_level: bool = false
 @onready var start: Start = $Start
 @onready var exit: Exit = $Exit
 @onready var deathzone: Area2D = $Deathzone
 @onready var hud: HUD = $UILayer/HUD
+@onready var ui_layer: CanvasLayer = $UILayer
 
 var player: Player = null
 
@@ -58,11 +60,14 @@ func reset_player() -> void:
 
 func _on_exit_body_entered(body: Node2D) -> void:
 	if body is Player:
-		exit.animate()
-		if next_level != null:
-			await get_tree().create_timer(1.5).timeout
-			get_tree().change_scene_to_packed(next_level)
+		if is_final_level or next_level != null:
+			exit.animate()
 			win = true
+			await get_tree().create_timer(1.5).timeout
+			if is_final_level:
+				ui_layer.show_win_screen(true)
+			else:
+				get_tree().change_scene_to_packed(next_level)
 			
 func _on_level_timer_timeout():
 	if not win:
